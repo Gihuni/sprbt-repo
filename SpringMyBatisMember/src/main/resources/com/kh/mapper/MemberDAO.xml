@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.mapper.MemberDAO">
+	<insert id="insert" parameterType="com.kh.domain.Member">
+		INSERT INTO USERMEMBER(no, id, pwd, name) VALUES(USERMEMBER_SEQ.NEXTVAL, #{id},
+		#{pwd}, #{name})
+	</insert>
+	<select id="select" resultType="com.kh.domain.Member">
+		SELECT
+		no, id, pwd, name, reg_date
+		FROM USERMEMBER WHERE no = #{no}
+	</select>
+	<update id="update">
+		UPDATE
+		USERMEMBER SET id =#{id}, pwd
+		=#{pwd}, name =#{name}
+		WHERE no = #{no}
+	</update>
+	<delete id="delete">
+		delete
+		from USERMEMBER
+		where no = #{no}
+	</delete>
+	<select id="selectAll" resultType="com.kh.domain.Member">
+		<![CDATA[
+		SELECT
+		no,
+		id, pwd,
+		name, reg_date FROM
+		USERMEMBER WHERE no > 0
+		ORDER BY
+		no desc,
+		reg_date DESC]]>
+	</select>
+</mapper>
